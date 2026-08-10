@@ -92,9 +92,9 @@ AWS-Hybrid-Infrastructure-Lab/
 │
 ├── screenshots/
 │   ├── 01-vpc-overview.png
-│   ├── 02-subnets-overview.png
-│   ├── 03-route-table.png
-│   ├── 04-security-groups.png
+│   ├── 02-route-table.png
+│   ├── 03-security-groups-alb.png
+│   ├── 04-security-groups-ec2.png
 │   ├── 05-ec2-running.png
 │   └── 06-nginx-web-validation.png
 │
