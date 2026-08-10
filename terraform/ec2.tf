@@ -49,9 +49,11 @@ resource "aws_instance" "web_lab" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = "t3.micro"
 
+
   subnet_id                   = aws_subnet.public_1.id
   vpc_security_group_ids      = [aws_security_group.ec2_lab.id]
   associate_public_ip_address = true
+  user_data_replace_on_change = true
 
   user_data = <<-EOF
               #!/bin/bash
@@ -61,14 +63,122 @@ resource "aws_instance" "web_lab" {
 
               cat > /usr/share/nginx/html/index.html <<'HTML'
               <!DOCTYPE html>
-              <html>
+              <html lang="en">
               <head>
-                  <title>AWS Hybrid Infrastructure Lab</title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>AWS Hybrid Infrastructure Lab</title>
+                <style>
+                  body {
+                    margin: 0;
+                    font-family: Arial, sans-serif;
+                    background: #111827;
+                    color: #f9fafb;
+                  }
+
+                  .container {
+                    max-width: 1000px;
+                    margin: auto;
+                    padding: 60px 20px;
+                  }
+
+                  h1 {
+                    font-size: 42px;
+                    margin-bottom: 5px;
+                  }
+
+                  .subtitle {
+                    color: #9ca3af;
+                    margin-bottom: 40px;
+                  }
+
+                  .status {
+                    display: inline-block;
+                    padding: 8px 14px;
+                    background: #065f46;
+                    border-radius: 20px;
+                    margin-bottom: 30px;
+                  }
+
+                  .grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 20px;
+                  }
+
+                  .card {
+                    background: #1f2937;
+                    padding: 25px;
+                    border-radius: 12px;
+                  }
+
+                  .card span {
+                    display: block;
+                    color: #9ca3af;
+                    font-size: 14px;
+                    margin-bottom: 8px;
+                  }
+
+                  .card strong {
+                    font-size: 20px;
+                  }
+
+                  footer {
+                    margin-top: 40px;
+                    color: #6b7280;
+                  }
+                </style>
               </head>
+
               <body>
+                <div class="container">
+
+                  <div class="status">● Infrastructure Online</div>
+
                   <h1>AWS Hybrid Infrastructure Lab</h1>
-                  <p>EC2 provisioned automatically with Terraform.</p>
-                  <p>Amazon Linux 2023 + Nginx</p>
+                  <p class="subtitle">
+                    Infrastructure provisioned automatically using Terraform
+                  </p>
+
+                  <div class="grid">
+
+                    <div class="card">
+                      <span>Cloud Provider</span>
+                      <strong>AWS</strong>
+                    </div>
+
+                    <div class="card">
+                      <span>Region</span>
+                      <strong>sa-east-1</strong>
+                    </div>
+
+                    <div class="card">
+                      <span>Compute</span>
+                      <strong>EC2 t3.micro</strong>
+                    </div>
+
+                    <div class="card">
+                      <span>Operating System</span>
+                      <strong>Amazon Linux 2023</strong>
+                    </div>
+
+                    <div class="card">
+                      <span>Web Server</span>
+                      <strong>Nginx</strong>
+                    </div>
+
+                    <div class="card">
+                      <span>Infrastructure as Code</span>
+                      <strong>Terraform</strong>
+                    </div>
+
+                  </div>
+
+                  <footer>
+                    AWS Hybrid Infrastructure Lab • Infrastructure as Code
+                  </footer>
+
+                </div>
               </body>
               </html>
               HTML
