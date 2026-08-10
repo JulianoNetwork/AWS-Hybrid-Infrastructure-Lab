@@ -1,41 +1,46 @@
 # AWS Hybrid Infrastructure Lab
 
-Laboratório de infraestrutura AWS desenvolvido com Terraform.
+Projeto de infraestrutura em nuvem desenvolvido com AWS e Terraform, com foco em networking, segurança, automação e boas práticas de arquitetura.
 
 ## Objetivo
 
-Simular uma infraestrutura corporativa utilizando boas práticas de:
+Simular uma infraestrutura corporativa híbrida, utilizando Infrastructure as Code para provisionar e gerenciar recursos AWS.
 
-- Networking
-- Segurança
-- Infrastructure as Code
-- Monitoramento
-- Alta disponibilidade
-- Integração híbrida
+## Arquitetura atual
 
-## Tecnologias
+- VPC: 10.10.0.0/16
+- Public Subnet: 10.10.1.0/24
+- Private Subnet: 10.10.10.0/24
+- Internet Gateway
+- Public Route Table
+- Security Groups segmentados
+- IAM Identity Center / SSO
+- AWS Budget para controle de custos
 
-- AWS
-- Terraform
-- Linux
-- Nginx
-- CloudWatch
-- GitHub Actions
+## Segurança
 
-## Arquitetura
+O projeto utiliza autenticação via IAM Identity Center (SSO), evitando o uso de Access Keys permanentes no código.
 
-Em desenvolvimento.
+A EC2 não será exposta diretamente à Internet.
 
-## Etapas
+O Security Group da aplicação permite tráfego HTTP apenas originado pelo Application Load Balancer.
 
-- [ ] VPC
-- [ ] Public Subnet
-- [ ] Private Subnet
-- [ ] Internet Gateway
-- [ ] Security Groups
-- [ ] EC2
+## Status
+
+- [x] Configuração do Terraform
+- [x] Autenticação AWS via SSO
+- [x] VPC
+- [x] Public Subnet
+- [x] Private Subnet
+- [x] Internet Gateway
+- [x] Public Route Table
+- [x] Security Groups
+- [x] AWS Budget
+- [ ] EC2 Linux
+- [ ] AWS Systems Manager
+- [ ] Nginx
 - [ ] Application Load Balancer
 - [ ] CloudWatch
 - [ ] RDS
 - [ ] Auto Scaling
-- [ ] VPN Site-to-Site
+- [ ] Integração híbrida / VPN
